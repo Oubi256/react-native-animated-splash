@@ -41,6 +41,7 @@ public class AnimateObject {
     private int priority;
     public boolean isLastObject;
     public boolean isLoop;
+    public boolean isLoopInvert;
 
     // for rotate animation
     private float startFromValue;
@@ -49,7 +50,7 @@ public class AnimateObject {
     private View animationView;
 
     // For translate animation
-    public AnimateObject(AnimatedImage object, String animationType, int animationDuration, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, boolean loop, int priority) {
+    public AnimateObject(AnimatedImage object, String animationType, int animationDuration, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, boolean loop, boolean loopInvert, int priority) {
         this.animationType = animationType;
         this.animationDuration = animationDuration;
         this.setFillAfter = true;
@@ -58,6 +59,7 @@ public class AnimateObject {
         this.fromYDelta = fromYDelta;
         this.toYDelta = toYDelta;
         this.isLoop = loop;
+        this.isLoopInvert = loopInvert;
 
         this.priority = priority;
         this.object = object;
@@ -80,11 +82,12 @@ public class AnimateObject {
     }
 
     // For rotate animation
-    public AnimateObject(AnimatedImage object, String animationType, int animationDuration, float fromValue, float toValue, boolean loop, int priority) {
+    public AnimateObject(AnimatedImage object, String animationType, int animationDuration, float fromValue, float toValue, boolean loop, boolean loopInvert, int priority) {
         this.animationType = animationType;
         this.animationDuration = animationDuration;
         this.setFillAfter = true;
         this.isLoop = loop;
+        this.isLoopInvert = loopInvert;
         this.startFromValue = fromValue;
         this.endToValue = toValue;
         this.priority = priority;
@@ -108,7 +111,7 @@ public class AnimateObject {
 
     }
     // For translate animation
-    public AnimateObject(AnimatedText object, String animationType, int animationDuration, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, boolean loop, int priority) {
+    public AnimateObject(AnimatedText object, String animationType, int animationDuration, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, boolean loop, boolean loopInvert, int priority) {
         this.animationType = animationType;
         this.animationDuration = animationDuration;
         this.setFillAfter = true;
@@ -117,6 +120,7 @@ public class AnimateObject {
         this.fromYDelta = fromYDelta;
         this.toYDelta = toYDelta;
         this.isLoop = loop;
+        this.isLoopInvert = loopInvert;
 
         this.priority = priority;
         this.textobject = object;
@@ -140,13 +144,14 @@ public class AnimateObject {
     }
 
     // For rotate animation
-    public AnimateObject(AnimatedText object, String animationType, int animationDuration, float fromValue, float toValue, boolean loop, int priority) {
+    public AnimateObject(AnimatedText object, String animationType, int animationDuration, float fromValue, float toValue, boolean loop, boolean loopInvert, int priority) {
         Log.d(TAG, "AnimateObjecttext: priority ");
 
         this.animationType = animationType;
         this.animationDuration = animationDuration;
         this.setFillAfter = true;
         this.isLoop = loop;
+        this.isLoopInvert = loopInvert;
 
         this.startFromValue = fromValue;
         this.endToValue = toValue;
@@ -229,7 +234,7 @@ public class AnimateObject {
         return endToValue;
     }
 
-    public void slideAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void slideAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getImageView();
 
@@ -238,6 +243,7 @@ public class AnimateObject {
         slideImage.setFillAfter(setFillAfter);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             slideImage.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
 
@@ -323,7 +329,7 @@ public class AnimateObject {
         });
 
     }
-    public void slideAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop) {
+    public void slideAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getImageView();
 
@@ -332,6 +338,7 @@ public class AnimateObject {
         slideImage.setFillAfter(setFillAfter);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             slideImage.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
 
@@ -414,7 +421,7 @@ public class AnimateObject {
         });
 
     }
-    public void slideAnimation(AnimatedText textobject, final AnimatedImage nextObject, Boolean isLoop) {
+    public void slideAnimation(AnimatedText textobject, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = textobject.getTextView();
 
@@ -423,6 +430,7 @@ public class AnimateObject {
         slideImage.setFillAfter(setFillAfter);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             slideImage.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
 
@@ -480,7 +488,7 @@ public class AnimateObject {
         });
 
     }
-    public void slideAnimation(AnimatedText textobject, final AnimatedText textNextObject, Boolean isLoop) {
+    public void slideAnimation(AnimatedText textobject, final AnimatedText textNextObject, Boolean isLoop, Boolean isLoopInvert) {
         Log.d(TAG, "slideAnimation: text next object");
         View view = textobject.getTextView();
 
@@ -489,6 +497,7 @@ public class AnimateObject {
         slideImage.setFillAfter(setFillAfter);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             slideImage.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
 
@@ -638,6 +647,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -714,7 +724,7 @@ public class AnimateObject {
         });
     }
 
-    public void fadeAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void fadeAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getImageView();
         view.setAlpha(1);
@@ -723,6 +733,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -806,7 +817,7 @@ public class AnimateObject {
         });
 
     }
-    public void fadeAnimation(AnimatedText object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void fadeAnimation(AnimatedText object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getTextView();
         view.setAlpha(1);
@@ -815,6 +826,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -898,7 +910,7 @@ public class AnimateObject {
         });
 
     }
-    public void fadeAnimation(AnimatedText object, final AnimatedText nextObject, Boolean isLoop) {
+    public void fadeAnimation(AnimatedText object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getTextView();
         view.setAlpha(1);
@@ -907,6 +919,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -990,7 +1003,7 @@ public class AnimateObject {
         });
 
     }
-    public void fadeAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop) {
+    public void fadeAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getImageView();
         view.setAlpha(1);
@@ -999,6 +1012,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -1082,12 +1096,13 @@ public class AnimateObject {
         });
 
     }
-    public void rotateAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void rotateAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
         View view = object.getImageView();
         ObjectAnimator rotation = ObjectAnimator.ofFloat(view, View.ROTATION, startFromValue, endToValue);
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1172,12 +1187,13 @@ public class AnimateObject {
         });
 
     }
-    public void rotateAnimation(AnimatedText object, final AnimatedText nextObject, Boolean isLoop) {
+    public void rotateAnimation(AnimatedText object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
         View view = object.getTextView();
         ObjectAnimator rotation = ObjectAnimator.ofFloat(view, View.ROTATION, startFromValue, endToValue);
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1262,12 +1278,13 @@ public class AnimateObject {
         });
 
     }
-    public void rotateAnimation(AnimatedText object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void rotateAnimation(AnimatedText object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
         View view = object.getTextView();
         ObjectAnimator rotation = ObjectAnimator.ofFloat(view, View.ROTATION, startFromValue, endToValue);
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1352,12 +1369,13 @@ public class AnimateObject {
         });
 
     }
-    public void rotateAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop) {
+    public void rotateAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
         View view = object.getImageView();
         ObjectAnimator rotation = ObjectAnimator.ofFloat(view, View.ROTATION, startFromValue, endToValue);
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1442,7 +1460,7 @@ public class AnimateObject {
         });
 
     }
-    public void scaleAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void scaleAnimation(AnimatedImage object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getImageView();
         ObjectAnimator scale = ObjectAnimator.ofPropertyValuesHolder(view,
@@ -1453,6 +1471,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
@@ -1535,7 +1554,7 @@ public class AnimateObject {
         });
 
     }
-    public void scaleAnimation(AnimatedText object, final AnimatedImage nextObject, Boolean isLoop) {
+    public void scaleAnimation(AnimatedText object, final AnimatedImage nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getTextView();
         ObjectAnimator scale = ObjectAnimator.ofPropertyValuesHolder(view,
@@ -1546,6 +1565,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
@@ -1628,7 +1648,7 @@ public class AnimateObject {
         });
 
     }
-    public void scaleAnimation(AnimatedText object, final AnimatedText nextObject, Boolean isLoop) {
+    public void scaleAnimation(AnimatedText object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getTextView();
         ObjectAnimator scale = ObjectAnimator.ofPropertyValuesHolder(view,
@@ -1639,6 +1659,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
@@ -1721,7 +1742,7 @@ public class AnimateObject {
         });
 
     }
-    public void scaleAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop) {
+    public void scaleAnimation(AnimatedImage object, final AnimatedText nextObject, Boolean isLoop, Boolean isLoopInvert) {
 
         View view = object.getImageView();
         ObjectAnimator scale = ObjectAnimator.ofPropertyValuesHolder(view,
@@ -1732,6 +1753,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
+            if (isLoopInvert) slideImage.setRepeatMode(slideImage.REVERSE)
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
