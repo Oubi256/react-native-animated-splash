@@ -647,7 +647,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -733,7 +733,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -826,7 +826,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -919,7 +919,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -1012,7 +1012,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -1102,7 +1102,7 @@ public class AnimateObject {
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) rotation.setRepeatMode(rotation.REVERSE);
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1193,7 +1193,7 @@ public class AnimateObject {
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) rotation.setRepeatMode(rotation.REVERSE);
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1284,7 +1284,7 @@ public class AnimateObject {
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) rotation.setRepeatMode(rotation.REVERSE);
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1375,7 +1375,7 @@ public class AnimateObject {
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) rotation.setRepeatMode(rotation.REVERSE);
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -1471,7 +1471,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) scale.setRepeatMode(scale.REVERSE);
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
@@ -1565,7 +1565,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) scale.setRepeatMode(scale.REVERSE);
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
@@ -1659,7 +1659,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) scale.setRepeatMode(scale.REVERSE);
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
@@ -1753,7 +1753,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
-            if (isLoopInverse) slideImage.setRepeatMode(slideImage.REVERSE);
+            if (isLoopInverse) scale.setRepeatMode(scale.REVERSE);
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
