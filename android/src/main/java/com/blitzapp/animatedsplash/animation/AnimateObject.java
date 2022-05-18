@@ -42,6 +42,7 @@ public class AnimateObject {
     private int priority;
     public boolean isLastObject;
     public boolean isLoop;
+    public boolean isLoopReverse;
 
     // for rotate animation
     private float startFromValue;
@@ -49,7 +50,7 @@ public class AnimateObject {
     private View animationView;
 
     // For translate animation
-    public AnimateObject(AddImageView object, String animationType, int animationDuration, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, boolean loop, int priority) {
+    public AnimateObject(AddImageView object, String animationType, int animationDuration, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, boolean loop, boolean loopReverse, int priority) {
         this.animationType = animationType;
         this.animationDuration = animationDuration;
         this.setFillAfter = true;
@@ -58,6 +59,7 @@ public class AnimateObject {
         this.fromYDelta = fromYDelta;
         this.toYDelta = toYDelta;
         this.isLoop = loop;
+        this.isLoopReverse = loopReverse;
 
         this.priority = priority;
         this.object = object;
@@ -77,11 +79,12 @@ public class AnimateObject {
     }
 
     // For rotate animation
-    public AnimateObject(AddImageView object, String animationType, int animationDuration, float fromValue, float toValue, boolean loop, int priority) {
+    public AnimateObject(AddImageView object, String animationType, int animationDuration, float fromValue, float toValue, boolean loop, boolean loopReverse, int priority) {
         this.animationType = animationType;
         this.animationDuration = animationDuration;
         this.setFillAfter = true;
         this.isLoop = loop;
+        this.isLoopReverse = loopReverse;
 
         this.startFromValue = fromValue;
         this.endToValue = toValue;
@@ -155,7 +158,7 @@ public class AnimateObject {
         return endToValue;
     }
 
-    public void slideAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop) {
+    public void slideAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop, Boolean isLoopReverse) {
 
         View view = object.getImageView();
 
@@ -164,6 +167,7 @@ public class AnimateObject {
         slideImage.setFillAfter(setFillAfter);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopReverse) slideImage.setRepeatMode(slideImage.REVERSE);
             slideImage.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
 
@@ -334,6 +338,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopReverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -410,7 +415,7 @@ public class AnimateObject {
         });
     }
 
-    public void fadeAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop) {
+    public void fadeAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop, Boolean isLoopReverse) {
 
         View view = object.getImageView();
         view.setAlpha(1);
@@ -419,6 +424,7 @@ public class AnimateObject {
         fadeIn.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopReverse) fadeIn.setRepeatMode(fadeIn.REVERSE);
             fadeIn.setRepeatCount(ValueAnimator.INFINITE);
         }
         fadeIn.start();
@@ -498,12 +504,13 @@ public class AnimateObject {
 
     }
 
-    public void rotateAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop) {
+    public void rotateAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop, Boolean isLoopReverse) {
         View view = object.getImageView();
         ObjectAnimator rotation = ObjectAnimator.ofFloat(view, View.ROTATION, startFromValue, endToValue);
         rotation.setDuration(animationDuration);
         view.setVisibility(View.VISIBLE);
         if (isLoop) {
+            if (isLoopReverse) rotation.setRepeatMode(rotation.REVERSE);
 //            rotation.setRepeatMode(ValueAnimator.RESTART);
             rotation.setRepeatCount(ValueAnimator.INFINITE);
             rotation.setInterpolator(new LinearInterpolator());
@@ -584,7 +591,7 @@ public class AnimateObject {
 
     }
 
-    public void scaleAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop) {
+    public void scaleAnimation(AddImageView object, final AddImageView nextObject, Boolean isLoop, Boolean isLoopReverse) {
 
         View view = object.getImageView();
         ObjectAnimator scale = ObjectAnimator.ofPropertyValuesHolder(view,
@@ -595,6 +602,7 @@ public class AnimateObject {
         view.setVisibility(View.VISIBLE);
         scale.setInterpolator(new LinearInterpolator());
         if (isLoop) {
+            if (isLoopReverse) scale.setRepeatMode(scale.REVERSE);
             scale.setRepeatCount((int) Double.POSITIVE_INFINITY);
         }
         scale.start();
