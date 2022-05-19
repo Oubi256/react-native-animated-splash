@@ -1,6 +1,7 @@
 package com.blitzapp.animatedsplash.animation;
 
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,6 +10,8 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,6 +24,7 @@ import com.facebook.react.bridge.ReactContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static android.content.ContentValues.TAG;
 import static com.facebook.react.bridge.UiThreadUtil.runOnUiThread;
@@ -64,20 +68,26 @@ public class Splash {
     //    private static ImageView imageView;
     public static boolean animationStatus = false;
 
-    public static void createSplashView(Context context) {
+    public static void createSplashView(Context context, int theme) {
+
         getWindowDimensions();
         applicationContext = context;
         // Create dialog to present view
-        dialog = new Dialog(context, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
-//        setDialogAnimation(DIALOGFADE);
-//        dialog.getWindow().getAttributes().windowAnimations = R.style.Custom; //style id
+        dialog = new Dialog(context, theme);
+        
         dialog.setCancelable(false);
         view = new FrameLayout(context);
         dialog.setContentView(view);
-        view.getLayoutParams().height = screenHeight;
+        View decorView = dialog.getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        decorView.setSystemUiVisibility(uiOptions);
+        view.getLayoutParams().height = screenHeight*2;
         view.getLayoutParams().width = screenWidth;
-        setView();
 
+        setView();
         mHandler = new Handler();
     }
 
