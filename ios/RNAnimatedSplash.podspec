@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
   s.author             = { "author" => "alisajames048@gmail.com" }
-  s.platform     = :ios, "9.0"
+  s.platform     = :ios, "10.0"
   s.source       = { :git => "https://github.com/Blitz-Mobile-Apps/react-native-animated-splash.git", :tag => "master" }
   s.source_files  = "RNAnimatedSplash/**/*.{h,m}"
   s.requires_arc = true
