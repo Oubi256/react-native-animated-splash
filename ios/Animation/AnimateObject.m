@@ -203,20 +203,27 @@ NSLog(@"in loop fade in");
 // loop event
 -(void)slideAnimation:(AddImageView *)imageobject :(AddImageView *)nextObject :(bool)isLoop{
   
-
    dispatch_async(dispatch_get_main_queue(), ^{
   UIImageView *imagev = imageobject.getImageView;
      imagev.hidden = NO;
-     imagev.transform = CGAffineTransformTranslate(imagev.transform,_fromXDelta, _fromYDelta);
-     [UIView animateWithDuration:_animationDuration delay:0.0 options:isLoop?UIViewAnimationOptionCurveLinear:nil animations:^{
-        imagev.transform = CGAffineTransformTranslate(imagev.transform,_toXDelta, _toYDelta);
+       if(isLoop == false){
+           imagev.transform = CGAffineTransformTranslate(imagev.transform,_fromXDelta, _fromYDelta);
+       }
+            [UIView animateWithDuration:_animationDuration delay:0.0 options:isLoop?UIViewAnimationOptionCurveLinear:nil animations:^{
+               imagev.transform = CGAffineTransformTranslate(imagev.transform,_toXDelta, _toYDelta+_fromYDelta);
   } completion:^(BOOL finished){
     if(nextObject != nil && counter < animatedObjectLength){
     [splashClassInstance runAnimation];
     }
+      NSLog(@"DEBUG: slideAnimation");
     if(isLoop == true && hidingfinal != true){
-      NSLog(@"in loop rotate");
-      [self slideAnimation:imageobject :nil :isLoop];
+      NSLog(@"DEBUG: in loop rotate");
+        
+        [UIView animateWithDuration:_animationDuration delay:0.0 options:isLoop?UIViewAnimationOptionCurveLinear:nil animations:^{
+           imagev.transform = CGAffineTransformTranslate(imagev.transform,_toXDelta*-1, (_toYDelta+_fromYDelta)*-1);
+        } completion:^(BOOL finished){
+            [self slideAnimation:imageobject :nil :isLoop];
+        }];
     }
     else{
       if(counter == animatedObjectLength){
